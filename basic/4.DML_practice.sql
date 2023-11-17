@@ -34,3 +34,15 @@ delete from author where id = 1;
 
 -- 방법 2. post를 update 후 삭제 
 update post set author_id = null where id =1;
+
+-- 예제4
+INSERT INTO author(id,name,email) values('1','cho','cho@naver.com');
+INSERT INTO author(id,name,email) values('2','kim','kim@naver.com');
+INSERT INTO author(id,name,email) values('3','park','park@naver.com');
+INSERT INTO author(id,name,email) values('4','jang','jang@naver.com');
+INSERT INTO author(id,name,email) values('5','jun','jun@naver.com');
+insert into post(id,title,author_id) values('1','a','1');
+insert into post(id,title,author_id) values('2','a2','1');
+insert into post(id,title,author_id) values('3','b','2');
+insert into post(id,title) values('4','c');
+insert into post(id,title) values('5','d');

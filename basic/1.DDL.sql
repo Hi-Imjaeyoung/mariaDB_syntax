@@ -20,22 +20,9 @@ author_id INt, FOREIGN KEY(author_id) REFERENCES author(id));
 
 -- 테이블 생성문 조회
 SHOW CREATE TABLE posts;
--- >>>
--- ouput (변경하다가 중간에 변경 사항을 확인 가능)
--- CREATE TABLE `posts` (
---    `id` int(11) NOT NULL,
---    `title` varchar(255) DEFAULT NULL,
---    `content` varchar(255) DEFAULT NULL,
---    `author_id` int(11) DEFAULT NULL,
---    PRIMARY KEY (`id`),
---    KEY `author_id` (`author_id`),
---    CONSTRAINT `posts_ibfk_1` FOREIGN KEY (`author_id`) REFERENCES `author` (`id`)
---  ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ciutf8mb4 COLLATE=utf8mb4_general_ci
---  posts_ibfk_1 디폴트 키
 
 -- 테이블 제약조건 조회 // 다른 schema에서 가져옴
-SELECT * FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE
-WHERE TABLE_NAME = 'posts'
+SELECT * FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE TABLE_NAME = 'posts'
 
 -- 테이블 인덱스 조회 (인덱스는 조회를 빠르게 하기 위해 만듬)
 SHOW INDEX FROM posts;
@@ -51,3 +38,8 @@ ALTER TABLE post MODIFY COLUMN name VARCHAR(100) NOT NULL;
 ALTER TABLE post CHANGE COLUMN content contents VARCHAR(250);
 -- 컬럼 삭제
 ALTER TABLE post DROP COLUMN test1;
+
+-- Drop
+DROP DATABASE 데이터베이스명;
+
+DROP DATABASE if exists 데이터베이스명;
