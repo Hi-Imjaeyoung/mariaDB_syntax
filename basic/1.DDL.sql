@@ -38,6 +38,8 @@ ALTER TABLE post MODIFY COLUMN name VARCHAR(100) NOT NULL;
 ALTER TABLE post CHANGE COLUMN content contents VARCHAR(250);
 -- 컬럼 삭제
 ALTER TABLE post DROP COLUMN test1;
+-- 외래키 추가
+ALTER TABLE post ADD FOREIGN KEY(name) REFERENCES author(name);  
 
 -- Drop
 DROP DATABASE 데이터베이스명;
