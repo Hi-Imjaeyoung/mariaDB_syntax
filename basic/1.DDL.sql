@@ -45,3 +45,7 @@ ALTER TABLE post ADD FOREIGN KEY(name) REFERENCES author(name);
 DROP DATABASE 데이터베이스명;
 
 DROP DATABASE if exists 데이터베이스명;
+
+-- 제약조건 지우기
+alter table author drop constraint email; 
+alter table author drop FOREIGN key email; 

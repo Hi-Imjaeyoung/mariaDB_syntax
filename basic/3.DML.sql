@@ -60,7 +60,47 @@ select * from author where name LIKE '%홍%';
 select * from author where name LIKE '%홍';
 
 -- regexp
+select * from author where name REGXP'[a-z]';
 
--- cast
+-- cast 데이터 타입을 변환
+select cast(20200101,DATE) > 2020-01-01
+
 -- convert
--- date_format
+convert('2020-01-01', DATE); > 2020-01-01
+
+-- date_format 
+select * post from where date_format(created_time, '%Y-%m-%d')
+
+-- 흐름제어문
+-- case
+case value
+when [compare_value1] then result1
+when [compare_value1] then result2
+else result3;
+end
+
+-- 예제
+select id, title, content,
+case author_id
+    when 1 then 'First_author' 
+    when 2 then 'second_author' 
+    else 'others'
+end
+as author_type from post;
+
+-- 예제 2
+select id, title, content,
+case
+    when author_id = 1 then 'First_author' 
+    when author_id = 2 then 'second_author'
+    when author_id is null then 'anonymus' 
+    else 'others'
+end
+as author_type from post;
+
+-- if 예제
+-- if문 사용 id가 1이면 first_author 아니면 others
+-- id,title,content,authoer_type
+select id,title,content, if(author_id = 1,'first_author','others') as author_type from post;  
+-- 위에서 동일한 결과가 나오도록 if문으로 구현
+select id,title,content, if(author_id is null,'others','first_author') as author_type from post;  

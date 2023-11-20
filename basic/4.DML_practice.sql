@@ -46,3 +46,34 @@ insert into post(id,title,author_id) values('2','a2','1');
 insert into post(id,title,author_id) values('3','b','2');
 insert into post(id,title) values('4','c');
 insert into post(id,title) values('5','d');
+
+--예제 5. 프로그램어스 조건에 맞는 도서 풀이
+--방법 1 date_fromat을 사용
+SELECT BOOK_ID,DATE_FORMAT(PUBLISHED_DATE, '%Y-%m-%d') as PUBLISHED_DATE
+from BOOK where CATEGORY = '인문'
+&& date_format(PUBLISHED_DATE,'%Y') = '2021'
+ORDER by PUBLISHED_DATE;
+--방법 2 like 를 사용
+SELECT BOOK_ID,DATE_FORMAT(PUBLISHED_DATE, '%Y-%m-%d') as PUBLISHED_DATE
+from BOOK where CATEGORY = '인문'
+&& PUBLISHED_DATE like '2021%'
+ORDER by PUBLISHED_DATE;
+--방법 3 between을 사용
+SELECT BOOK_ID,DATE_FORMAT(PUBLISHED_DATE, '%Y-%m-%d') as PUBLISHED_DATE
+from BOOK where CATEGORY = '인문'
+&& (PUBLISHED_DATE between '2021-01-01' and '2021-12-31')
+ORDER by PUBLISHED_DATE;
+
+-- now()를 활용하여 오늘 날짜 생성 파일 출력하기
+select * from post where created_time like = '2023-11-22%';
+select * from post where date_format(created_time,'%Y-%m-%d') = date_format(now(),'%Y-%m-%d');
+
+-- FK인 author id를 on update cascade 옵션으로 바꾸고 확인
+alter table post add constraint foreign key(author_id)references author(id) on update cascade;
+show index from post;
+SELECT * FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE TABLE_NAME = 'post';
+select * from post;
+insert into post(id,title,author_id) values(10,'r',11);
+update author set id = 50 where id =11;
+select * from author;
+select * from post;
