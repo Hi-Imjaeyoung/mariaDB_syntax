@@ -66,6 +66,7 @@ ORDER by PUBLISHED_DATE;
 
 -- now()를 활용하여 오늘 날짜 생성 파일 출력하기
 select * from post where created_time like = '2023-11-22%';
+-- 동적으로 조회
 select * from post where date_format(created_time,'%Y-%m-%d') = date_format(now(),'%Y-%m-%d');
 
 -- FK인 author id를 on update cascade 옵션으로 바꾸고 확인
