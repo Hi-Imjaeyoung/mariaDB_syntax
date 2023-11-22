@@ -104,3 +104,47 @@ as author_type from post;
 select id,title,content, if(author_id = 1,'first_author','others') as author_type from post;  
 -- 위에서 동일한 결과가 나오도록 if문으로 구현
 select id,title,content, if(author_id is null,'others','first_author') as author_type from post;  
+
+-- 프로시저
+ GRANT EXECUTE ON PROCEDURE 데이터베이스명.프로시저명 TO 'testuser'@'localhost';
+-- 생성 변수는 생략 가능, 변수 기본 형식은 IN(변수명 변수타입)
+DELIMITER //
+CREATE PROCEDURE 프로시저 이름(변수) BEGIN 커리문들~ 
+END //
+DELIMITER ;
+-- 예시 띄어쓰기 조심
+DELIMITER $$
+CREATE PROCEDURE addDATA(in title varchar(255), content varchar(255), author_id int(11)) 
+BEGIN
+ insert into post(title, content,author_id) value(title,content,author_id);
+ END $$ 
+ DELIMITER ;
+
+-- 호출
+CALL 프로시저명();
+
+-- 변수 선언 
+DECLARE 변수명 변수타입 [DEFAULT default_value];
+-- 변수 수정
+SET 변수명 = 수정값;
+set a =a+1
+-- 제어문 
+-- if문 
+if 조건식 when
+    select 'Hello'as message;
+else
+    select 'No Hello' as message;
+END if
+
+-- 변수에 값 넣주기
+select 컬럼명 into 변수
+
+-- while 문
+DECLARE a int [DEFAULT 0];
+while a<100 DO
+    조건이 참일 동안 반복 실행할 명령
+    
+END WHILE;
+
+-- 문자에 원하는 값 붙이기
+concat ('kim',a) >> kima가 출력
