@@ -22,11 +22,27 @@ LRANGE my_classes_name 0 -1
 EXPIRE my_classes_name kim 3600
 
 # SET 중복x 순서x
-SADD myest member
 # SET에 멤버 추가
+SADD myest member
+# SET 값 출력
 SMEMBERS myset
+# SET의 size 구하가
+SCARD myset
 # SET 특정 멤버 삭제
 SREM myset member1 member2
+
+# ZSET 순위관리하는데 주로 사용 실시간 시세
+ZADD key score member
+score 멤버를 정렬하는 데 사용되는 함수
+member 형식을 json형식으로도 가능
+# 특정키의 특정멤버 삭제
+ZREM key member
+# 특정멤버 위치 정보반환
+ZRANK key member
+# score 기준 오름차순 조회
+ZRANGE stock_price 0 -1
+# score 기준 내림차순 조회
+ZREVRANGE stock_price 0 -1
 
 # 데이터 가져오기
 GET Hello
