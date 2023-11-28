@@ -61,3 +61,4 @@ Keys *
 DEl key명
 # 모든 키 삭제
 FlUSHED
+# TTL 만료시간 조회
